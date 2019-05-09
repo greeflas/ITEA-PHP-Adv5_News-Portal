@@ -66,31 +66,13 @@
             </div>
         </section>
         <section class="regular-posts">
+        {% for post in posts %}
             <article class="post">
-                <a href="#" class="category-link">World</a>
-                <a href="#"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4></a>
-                <time>24 minutes ago</time>
+                <a href="#" class="category-link">{{ post.category.name }}</a>
+                <a href="#"><h4>{{ post.title }}</h4></a>
+                <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
             </article>
-            <article class="post">
-                <a href="#" class="category-link">World</a>
-                <a href="#"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4></a>
-                <time>24 minutes ago</time>
-            </article>
-            <article class="post">
-                <a href="#" class="category-link">World</a>
-                <a href="#"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4></a>
-                <time>24 minutes ago</time>
-            </article>
-            <article class="post">
-                <a href="#" class="category-link">World</a>
-                <a href="#"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4></a>
-                <time>24 minutes ago</time>
-            </article>
-            <article class="post">
-                <a href="#" class="category-link">World</a>
-                <a href="#"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4></a>
-                <time>24 minutes ago</time>
-            </article>
+        {% endfor %}
         </section>
     </div>
 {% endblock %}
