@@ -1,0 +1,45 @@
+a {
+    color: #212529;
+}
+
+a:hover {
+    color: inherit;
+}
+
+time {
+    color: #868686;
+    font-size: 13px;
+}
+
+/* HEADER */
+
+header.navbar {
+    background-color: #DC3543;
+}
+
+header.navbar .navbar-brand {
+    padding: 0;
+}
+
+header.navbar input.search {
+    border: none;
+    box-shadow: none;
+}
+
+header.navbar > nav .nav-item > .nav-link {
+    font-size: 15px;
+}
+
+/* MAIN */
+main {
+    padding-top: 60px;
+
+    background-color: #e6e6e682;
+}
+
+main > .container {
+    padding: 40px 0;
+
+    background-color: #fff;
+    border-radius: 6px;
+}
