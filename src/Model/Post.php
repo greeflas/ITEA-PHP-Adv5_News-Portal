@@ -10,6 +10,7 @@ final class Post
     private $title;
     private $shortDescription;
     private $image;
+    private $body;
     private $publicationDate;
     
     public function __construct(int $id, Category $category, string $title)
@@ -54,6 +55,18 @@ final class Post
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getBody(): ?string
+    {
+        return $this->body;
+    }
+
+    public function setBody(string $body): self
+    {
+        $this->body = $body;
 
         return $this;
     }

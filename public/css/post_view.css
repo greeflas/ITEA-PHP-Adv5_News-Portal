@@ -1,0 +1,14 @@
+main article.full > .content {
+    font-size: 20px;
+    line-height: 34px;
+}
+
+main article.full > .source {
+    margin-top: 40px;
+
+    font-weight: bold;
+}
+
+main article.full > .source > a {
+    color: #DC3543;
+}

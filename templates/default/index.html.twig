@@ -5,74 +5,70 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <section class="top-posts">
-            <article class="main-post top-post">
-                <a href="#" class="category-link">World</a>
-                <a href="#">
-                    <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
-                </a>
-                <a href="#" class="post-link">
-                    <h1>Lorem ipsum dolor</h1>
-                </a>
-                <time>1 minute ago</time>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
-                <div class="clearfix"></div>
-            </article>
-            <div class="row posts">
-                <div class="col"></div>
-                <div class="col-3">
-                    <article class="post top-post">
-                        <a href="#" class="category-link">World</a>
-                        <a href="#">
-                            <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
-                        </a>
-                        <a href="#" class="post-link">
-                            <h3>Lorem ipsum dolor</h3>
-                        </a>
-                        <time>5 minutes ago</time>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
-                    </article>
-                </div>
-                <div class="col-3">
-                    <article class="post top-post">
-                        <a href="#" class="category-link">Science</a>
-                        <a href="#">
-                            <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
-                        </a>
-                        <a href="#" class="post-link">
-                            <h3>Lorem ipsum dolor</h3>
-                        </a>
-
-                        <time>6 minutes ago</time>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
-                    </article>
-                </div>
-                <div class="col-3">
-                    <article class="post top-post">
-                        <a href="#" class="category-link">IT</a>
-                        <a href="#">
-                            <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
-                        </a>
-                        <a href="#" class="post-link">
-                            <h3>Lorem ipsum dolor</h3>
-                        </a>
-
-                        <time>7 minutes ago</time>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
-                    </article>
-                </div>
-                <div class="col"></div>
+    <section class="top-posts">
+        <article class="main-post top-post">
+            <a href="#" class="category-link">World</a>
+            <a href="#" class="post-link">
+                <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                <h1>Lorem ipsum dolor</h1>
+            </a>
+            <time>1 minute ago</time>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
+            <div class="clearfix"></div>
+        </article>
+        <div class="row posts">
+            <div class="col"></div>
+            <div class="col-3">
+                <article class="post top-post">
+                    <a href="#" class="category-link">World</a>
+                    <a href="#">
+                        <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                    </a>
+                    <a href="#" class="post-link">
+                        <h3>Lorem ipsum dolor</h3>
+                    </a>
+                    <time>5 minutes ago</time>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
+                </article>
             </div>
-        </section>
-        <section class="regular-posts">
-        {% for post in posts %}
-            <article class="post">
-                <a href="#" class="category-link">{{ post.category.name }}</a>
-                <a href="#"><h4>{{ post.title }}</h4></a>
-                <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
-            </article>
-        {% endfor %}
-        </section>
-    </div>
+            <div class="col-3">
+                <article class="post top-post">
+                    <a href="#" class="category-link">Science</a>
+                    <a href="#">
+                        <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                    </a>
+                    <a href="#" class="post-link">
+                        <h3>Lorem ipsum dolor</h3>
+                    </a>
+
+                    <time>6 minutes ago</time>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
+                </article>
+            </div>
+            <div class="col-3">
+                <article class="post top-post">
+                    <a href="#" class="category-link">IT</a>
+                    <a href="#">
+                        <img src="{{ asset('img/default.png') }}" alt="" class="img-fluid">
+                    </a>
+                    <a href="#" class="post-link">
+                        <h3>Lorem ipsum dolor</h3>
+                    </a>
+
+                    <time>7 minutes ago</time>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, harum.</p>
+                </article>
+            </div>
+            <div class="col"></div>
+        </div>
+    </section>
+    <section class="regular-posts">
+    {% for post in posts %}
+        <article class="post">
+            <a href="#" class="category-link">{{ post.category.name }}</a>
+            <a href="{{ path('post_view', {id: post.id}) }}"><h4>{{ post.title }}</h4></a>
+            <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+        </article>
+    {% endfor %}
+    </section>
 {% endblock %}

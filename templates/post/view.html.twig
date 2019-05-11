@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/post_view.css') }}">
+{% endblock %}
+
+{% block body %}
+    <article class="full">
+        <h1>{{ post.title }}</h1>
+        <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+        <div class="content">
+            {{ post.body | raw }}
+        </div>
+        <div class="source">Source: <a href="{{ path('index') }}">News Portal</a></div>
+    </article>
+{% endblock %}
