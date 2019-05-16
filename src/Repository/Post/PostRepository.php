@@ -27,6 +27,8 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
                 ->where('p.id = :id')
                 ->setParameter('id', $id)
                 ->andWhere('p.publicationDate IS NOT NULL')
+                ->innerJoin('p.category', 'c')
+                ->addSelect('c')
                 ->getQuery()
                 ->getOneOrNullResult()
             ;

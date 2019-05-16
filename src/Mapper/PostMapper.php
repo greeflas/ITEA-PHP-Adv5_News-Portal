@@ -13,7 +13,7 @@ final class PostMapper
     {
         $model = new PostModel(
             $entity->getId(),
-            new Category('TODO CATEGORY TITLE'),
+            new Category($entity->getCategory()->getTitle()),
             $entity->getTitle()
         );
 

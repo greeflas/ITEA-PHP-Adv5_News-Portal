@@ -3,9 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Post;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class PostFixtures extends AbstractFixture
+class PostFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -14,6 +15,9 @@ class PostFixtures extends AbstractFixture
             $post
                 ->setShortDescription($this->faker->sentence())
                 ->setImage($this->faker->imageUrl())
+                ->setCategory(
+                    $this->getReference('category_' . \mt_rand(0, 3))
+                )
             ;
 
             $body = '';
@@ -33,6 +37,13 @@ class PostFixtures extends AbstractFixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            CategoryFixtures::class,
+        ];
     }
 
     private function provideSentence(int $sentencesNumber)
