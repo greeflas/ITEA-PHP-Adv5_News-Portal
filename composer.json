@@ -17,7 +17,9 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
-        "symfony/debug-pack": "^1.0"
+        "doctrine/doctrine-fixtures-bundle": "^3.1",
+        "symfony/debug-pack": "^1.0",
+        "symfony/maker-bundle": "^1.11"
     },
     "config": {
         "preferred-install": {
