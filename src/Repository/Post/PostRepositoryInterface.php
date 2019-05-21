@@ -8,4 +8,6 @@ use App\Entity\Post;
 interface PostRepositoryInterface
 {
     public function findById(int $id): ?Post;
+
+    public function save(Post $post): void;
 }

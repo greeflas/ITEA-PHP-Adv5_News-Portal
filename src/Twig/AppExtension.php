@@ -15,11 +15,21 @@ class AppExtension extends AbstractExtension implements ContainerAwareInterface
     {
         return [
             new TwigFunction('get_param', [$this, 'getParam']),
+            new TwigFunction('parse_url', [$this, 'parseUrl'], ['is_safe' => ['html']])
         ];
     }
 
     public function getParam($name)
     {
         return $this->container->getParameter($name);
+    }
+
+    public function parseUrl(string $text): string
+    {
+        return \preg_replace(
+            '/(http[s]?:\/\/[a-zA-Z0-9\.:\/]+)/',
+            '<a href="$1" target="_blank">$1</a>',
+            $text
+        );
     }
 }

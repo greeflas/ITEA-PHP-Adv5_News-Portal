@@ -238,6 +238,9 @@
             ".env"
         ]
     },
+    "symfony/form": {
+        "version": "v4.2.8"
+    },
     "symfony/framework-bundle": {
         "version": "4.2",
         "recipe": {
@@ -261,6 +264,12 @@
         "version": "v4.2.8"
     },
     "symfony/http-kernel": {
+        "version": "v4.2.8"
+    },
+    "symfony/inflector": {
+        "version": "v4.2.8"
+    },
+    "symfony/intl": {
         "version": "v4.2.8"
     },
     "symfony/maker-bundle": {
@@ -289,8 +298,14 @@
             "config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v4.2.8"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.6"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.11.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
@@ -300,6 +315,9 @@
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
+    },
+    "symfony/property-access": {
+        "version": "v4.2.8"
     },
     "symfony/routing": {
         "version": "4.2",

@@ -46,4 +46,11 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
             return null;
         }
     }
+
+    public function save(Post $post): void
+    {
+        $em = $this->getEntityManager();
+        $em->persist($post);
+        $em->flush();
+    }
 }
