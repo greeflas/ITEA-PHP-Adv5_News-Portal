@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ category.name }}</h1>
+    <h1>{{ category.name }} - {{ get_param('app.pagination_page_limit') }}</h1>
     <hr>
     <div class="row">
     {% for post in category.posts %}
