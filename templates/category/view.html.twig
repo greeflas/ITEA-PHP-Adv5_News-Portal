@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ category.name }}</h1>
+    <hr>
+    <div class="row">
+    {% for post in category.posts %}
+        <article class="col-4">
+            <div><img src="{{ post.image }}" alt="" width="250"></div>
+            <time>{{ post.publicationDate | date('d-m-Y H:i') }}</time>
+            <p>
+                <a href="{{ path('post_view', {id: post.id}) }}">{{ post.title }}</a>
+            </p>
+        </article>
+    {% endfor %}
+    </div>
+{% endblock %}

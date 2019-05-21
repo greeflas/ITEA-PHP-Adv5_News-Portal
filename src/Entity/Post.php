@@ -42,7 +42,7 @@ class Post
     private $publicationDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="post")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;

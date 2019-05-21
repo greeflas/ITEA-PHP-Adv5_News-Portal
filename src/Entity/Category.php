@@ -5,9 +5,10 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Category\CategoryRepository")
  */
 class Category
 {
@@ -19,6 +20,12 @@ class Category
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=200)
+     * @Gedmo\Slug(fields={"title"}, updatable=false)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $title;
@@ -26,17 +33,29 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="category")
      */
-    private $post;
+    private $posts;
 
     public function __construct(string $title)
     {
         $this->title = $title;
-        $this->post = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     public function getTitle(): string
@@ -54,15 +73,15 @@ class Category
     /**
      * @return Collection|Post[]
      */
-    public function getPost(): Collection
+    public function getPosts(): Collection
     {
-        return $this->post;
+        return $this->posts;
     }
 
     public function addPost(Post $post): self
     {
-        if (!$this->post->contains($post)) {
-            $this->post[] = $post;
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
             $post->setCategory($this);
         }
 
@@ -71,8 +90,8 @@ class Category
 
     public function removePost(Post $post): self
     {
-        if ($this->post->contains($post)) {
-            $this->post->removeElement($post);
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
             // set the owning side to null (unless already changed)
             if ($post->getCategory() === $this) {
                 $post->setCategory(null);

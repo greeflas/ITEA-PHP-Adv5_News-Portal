@@ -4,6 +4,7 @@ namespace App\Repository\Post;
 
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -20,13 +21,22 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
         parent::__construct($registry, Post::class);
     }
 
+    public static function createPublishedCriteria(): Criteria
+    {
+        return Criteria::create()->andWhere(
+            Criteria::expr()->neq('p.publicationDate', null)
+        );
+    }
+
     public function findById(int $id): ?Post
     {
         try {
-            return $this->createQueryBuilder('p')
-                ->where('p.id = :id')
+            $qb = $this->createQueryBuilder('p');
+
+            $qb->addCriteria(self::createPublishedCriteria());
+
+            return $qb->where('p.id = :id')
                 ->setParameter('id', $id)
-                ->andWhere('p.publicationDate IS NOT NULL')
                 ->innerJoin('p.category', 'c')
                 ->addSelect('c')
                 ->getQuery()
