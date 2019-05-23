@@ -30,7 +30,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
             $post->setBody($body);
 
             if ($this->faker->boolean(80)) {
-                $post->setPublicationDate(new \DateTime());
+                $post->publish();
             }
 
             $manager->persist($post);

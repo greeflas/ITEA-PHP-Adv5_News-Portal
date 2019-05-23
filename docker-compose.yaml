@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+  php-fpm:
+    build: .docker/php-fpm
+    container_name: np_php-fpm
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:1.15
+    container_name: np_nginx
+    volumes:
+      - .:/var/www/app
+      - ./.docker/nginx/config/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    depends_on:
+      - php-fpm
+
+  mysql:
+    image: mysql:5.7
+    container_name: np_mysql
+    volumes:
+      - ./var/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - '.env.local'
