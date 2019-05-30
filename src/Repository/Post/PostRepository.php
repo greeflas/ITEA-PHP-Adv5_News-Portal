@@ -53,4 +53,25 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
         $em->persist($post);
         $em->flush();
     }
+
+    public function delete(Post $post): void
+    {
+        $em = $this->getEntityManager();
+        $em->remove($post);
+        $em->flush();
+    }
+
+    public function findAllPaginated(int $page, int $limit): iterable
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->addCriteria(self::createPublishedCriteria());
+
+        return $qb
+            ->setFirstResult(1 === $page ? 0 : ($page - 1) * $limit)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

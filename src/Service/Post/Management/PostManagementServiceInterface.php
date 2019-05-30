@@ -9,4 +9,6 @@ use App\Form\Dto\PostCreateDto;
 interface PostManagementServiceInterface
 {
     public function create(PostCreateDto $dto): Post;
+
+    public function delete(int $id): void;
 }

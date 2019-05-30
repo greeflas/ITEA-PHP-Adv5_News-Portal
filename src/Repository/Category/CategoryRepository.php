@@ -41,4 +41,17 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
             return null;
         }
     }
+
+    public function findById(int $id): ?Category
+    {
+        try {
+            return $this->createQueryBuilder('c')
+                ->where('c.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
+    }
 }
