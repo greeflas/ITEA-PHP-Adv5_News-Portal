@@ -4,18 +4,23 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Form\PostCreateType;
+use App\Service\Post\Management\ApiPostManagementService;
 use App\Service\Post\Management\PostManagementServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 final class PostController extends AbstractController
 {
     /**
      * @Route("/admin/post/create", name="admin_post_create")
      */
-    public function create(Request $request, PostManagementServiceInterface $postManagement)
+    public function create(Request $request, ApiPostManagementService $postManagement)
     {
         $form = $this->createForm(PostCreateType::class);
 
