@@ -12,7 +12,7 @@ services:
       - mysql
     environment:
       PHP_IDE_CONFIG: "serverName=xdebug-demo"
-      XDEBUG_CONFIG: "remote_host=172.17.13.64"
+      XDEBUG_CONFIG: "remote_host=docker.for.mac.localhost"
 
   nginx:
     image: nginx:1.15
@@ -34,3 +34,6 @@ services:
       - 3306:3306
     env_file:
       - '.env.local'
+
+  blackfire:
+    image: blackfire/blackfire
